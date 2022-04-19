@@ -125,7 +125,17 @@ enum FacebookPermission {
   adsRead,
 
   /// Allows your app see profile user
-  userLink
+  userLink,
+
+  pagesManageEngagement,
+  pagesReadUserContent,
+  pagesManageMetadata,
+  pagesMessaging,
+  instagramBasic,
+  instagramContentPublish,
+  instagramManageComments,
+  instagramManageInsights,
+  instagramManageMessage,
 }
 
 extension FacebookPermissionExtension on FacebookPermission {
@@ -134,6 +144,15 @@ extension FacebookPermissionExtension on FacebookPermission {
 }
 
 final _mapToString = {
+  FacebookPermission.instagramBasic: 'instagram_basic',
+  FacebookPermission.instagramContentPublish: 'instagram_content_publish',
+  FacebookPermission.instagramManageComments: 'instagram_manage_comments',
+  FacebookPermission.instagramManageInsights: 'instagram_manage_insights',
+  FacebookPermission.instagramManageMessage: 'instagram_manage_messages',
+  FacebookPermission.pagesMessaging: 'pages_messaging',
+  FacebookPermission.pagesManageMetadata: 'pages_manage_metadata',
+  FacebookPermission.pagesReadUserContent: 'pages_read_user_content',
+  FacebookPermission.pagesManageEngagement: 'pages_manage_engagement',
   FacebookPermission.publicProfile: 'public_profile',
   FacebookPermission.userFriends: 'user_friends',
   FacebookPermission.userLink: 'user_link',
