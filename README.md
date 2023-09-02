@@ -1,6 +1,6 @@
-# flutter_login_facebook
+# This is a fork of [flutter_login_facebook](https://github.com/Innim/flutter_login_facebook/) 
 
-[![pub package](https://img.shields.io/pub/v/flutter_login_facebook)](https://pub.dartlang.org/packages/flutter_login_facebook)
+[![pub package](https://img.shields.io/pub/v/flutter_login_facebook)](https://pub.dartlang.org/packages/)
 ![Analyze & Test](https://github.com/Innim/flutter_login_facebook/actions/workflows/dart.yml/badge.svg?branch=master)
 [![innim lint](https://img.shields.io/badge/style-innim_lint-40c4ff.svg)](https://pub.dev/packages/innim_lint)
 
@@ -12,13 +12,13 @@ Easily add Facebook login feature in your application. User profile information 
 
 Facebook SDK version, used in plugin:
 
-* iOS: **^12.3** ([CocoaPods](https://cocoapods.org/pods/FBSDKLoginKit))
-* Android: **^12.3** ([Maven](https://search.maven.org/artifact/com.facebook.android/facebook-android-sdk))
+* iOS: **^16.0** ([CocoaPods](https://cocoapods.org/pods/FBSDKLoginKit))
+* Android: **^16.0** ([Maven](https://search.maven.org/artifact/com.facebook.android/facebook-android-sdk))
 
 ## Minimum requirements
 
-* iOS **10.0** and higher.
-* Android **4.1** and newer (SDK **16**).
+* iOS **12.0** and higher.
+* Android **5.0** and newer (SDK **21**).
 
 Also package require Android embedding v2. So if your project was create with Flutter pre 1.12 
 you should [upgrade it](https://github.com/flutter/flutter/wiki/Upgrading-pre-1.12-Android-projects)
@@ -27,7 +27,7 @@ you should [upgrade it](https://github.com/flutter/flutter/wiki/Upgrading-pre-1.
 
 To use this plugin:
 
- 1. add `flutter_login_facebook` as a [dependency in your pubspec.yaml file](https://pub.dev/packages/flutter_login_facebook#-installing-tab-);
+ 1. add `` as a [dependency in your pubspec.yaml file](https://pub.dev/packages/#-installing-tab-);
  2. [setup android](#android);
  3. [setup ios](#ios);
  4. [additional Facebook app setup](#additional-facebook-app-setup);
@@ -36,6 +36,8 @@ To use this plugin:
 See [Facebook Login documentation](https://developers.facebook.com/docs/facebook-login) for full information.
 
 Also you can read the [article on Medium](https://medium.com/@greymag/add-facebook-login-in-your-flutter-app-5172b034aa7d) with detailed instructions.
+
+If you have any troubles check out [Problem solving](#problem-solving) section.
 
 ### Android
 
@@ -64,8 +66,8 @@ You don't need to add `fb_login_protocol_scheme`, only `facebook_app_id` and `fa
 * Make changes in `android/app/src/main/AndroidManifest.xml`:
   * Add a `meta-data` elements in section `application`:
 ```xml
-    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-    <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+<meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
 ```
   * Add a permission if not exist in root section (before or after `application`):
 ```xml
@@ -149,20 +151,7 @@ and `[APP_NAME]` with Facebook application name
 <key>LSApplicationQueriesSchemes</key>
 <array>
   <string>fbapi</string>
-  <string>fbapi20130214</string>
-  <string>fbapi20130410</string>
-  <string>fbapi20130702</string>
-  <string>fbapi20131010</string>
-  <string>fbapi20131219</string>
-  <string>fbapi20140410</string>
-  <string>fbapi20140116</string>
-  <string>fbapi20150313</string>
-  <string>fbapi20150629</string>
-  <string>fbapi20160328</string>
-  <string>fbauth</string>
   <string>fb-messenger-share-api</string>
-  <string>fbauth2</string>
-  <string>fbshareextension</string>
 </array>
 ```
 
@@ -222,7 +211,7 @@ You can:
 Sample code:
 
 ```dart
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+import 'package:/.dart';
 
 // Create an instance of FacebookLogin
 final fb = FacebookLogin();
@@ -277,7 +266,7 @@ See [documentation](https://developers.facebook.com/docs/facebook-login/android/
 Example: 
 
 ```dart
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+import 'package:/.dart';
 
 // Create an instance of FacebookLogin
 final fb = FacebookLogin();
@@ -303,3 +292,28 @@ If you targets Android 11 or higher, you should add
 
 in root element of your manifest `android/app/src/main/AndroidManifest.xml`. 
 See [Package visibility in Android 11](https://medium.com/androiddevelopers/package-visibility-in-android-11-cc857f221cd9) for details.
+
+## Problem solving
+
+### Android 
+
+#### Missing attribute
+
+You get error like this:
+
+```
+Missing 'package' key attribute on element package at ...
+```
+
+This issue happens for the combination of:
+
+- Using Android-SDK's API level 31 (or later),
+- With old Gradle version(s).
+
+Quote:
+```
+Basically, updating build-tools to 31 is not enough to support queries element (of manifest, added since Android 11+). Gradle needs to be updated, too.
+```
+
+Check your `com.android.tools.build:gradle` version in
+`android/build.gradle`. It's should be 3.5.4 or higher.

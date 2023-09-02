@@ -1,4 +1,4 @@
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+import 'package:flutter_facebook_instagram_login/flutter_facebook_instagram_login.dart';
 
 /// Login status.
 enum FacebookLoginStatus { success, cancel, error }

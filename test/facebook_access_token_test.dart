@@ -1,4 +1,4 @@
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+import 'package:flutter_facebook_instagram_login/src/models/facebook_access_token.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

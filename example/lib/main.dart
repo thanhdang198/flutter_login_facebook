@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+import 'package:flutter_facebook_instagram_login/flutter_facebook_instagram_login.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
